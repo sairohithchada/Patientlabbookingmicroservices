@@ -76,8 +76,8 @@ erDiagram
 
 ## ✅ 3. C2 Architecture (Container View)
 
-graph TD
-    User((User))
+    graph TD
+        User((User))
 
     subgraph Aggregator Layer
         AggregatorService[Aggregator Service<br><sub>Orchestrates Booking Workflow</sub>]
