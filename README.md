@@ -71,7 +71,7 @@ erDiagram
     LAB_SLOTS ||--|| APPOINTMENTS : used_by
 
 
-----------
+
 
 
 
