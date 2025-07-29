@@ -70,6 +70,47 @@ erDiagram
     LABS ||--o{ APPOINTMENTS : schedules
     LAB_SLOTS ||--|| APPOINTMENTS : used_by
 
+```
+
+---
+
+## ✅ 3. C2 Architecture (Container View)
+
+graph TD
+    User((User))
+
+    subgraph Aggregator Layer
+        AggregatorService[Aggregator Service<br><sub>Orchestrates Booking Workflow</sub>]
+    end
+
+    subgraph Microservices
+        PatientService[Patient Service<br><sub>Handles patient data & addresses</sub>]
+        LabService[Lab Service<br><sub>Handles labs & slots</sub>]
+        AppointmentService[Appointment Service<br><sub>Books appointments</sub>]
+        DistanceService[Distance Service<br><sub>Calculates nearest labs</sub>]
+    end
+
+    subgraph External APIs
+        Nominatim[Nominatim API<br><sub>Geolocation API</sub>]
+    end
+
+    subgraph Databases
+        PatientDB[(PostgreSQL - Patient DB)]
+        LabDB[(PostgreSQL - Lab DB)]
+        AppointmentDB[(PostgreSQL - Appointment DB)]
+    end
+
+    User --> AggregatorService
+
+    AggregatorService --> PatientService
+    AggregatorService --> LabService
+    AggregatorService --> AppointmentService
+    AggregatorService --> DistanceService
+
+    PatientService --> PatientDB
+    LabService --> LabDB
+    AppointmentService --> AppointmentDB
+    DistanceService --> Nominatim
 
 
 
