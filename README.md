@@ -112,7 +112,28 @@ erDiagram
     AppointmentService --> AppointmentDB
     DistanceService --> Nominatim
 
+```
 
+---
+
+
+## ✅ 3. C4 Architecture (Container View)
+```mermaid
+
+graph TD
+  Controller["AggregatorController"]
+  ServiceLayer["AggregatorService"]
+  RestClient1["RestTemplate: PatientService"]
+  RestClient2["RestTemplate: LabService"]
+  RestClient3["RestTemplate: AppointmentService"]
+  RestClient4["RestTemplate: DistanceService"]
+  DB["None (Stateless Aggregator)"]
+
+  Controller --> ServiceLayer
+  ServiceLayer --> RestClient1
+  ServiceLayer --> RestClient2
+  ServiceLayer --> RestClient3
+  ServiceLayer --> RestClient4
 
 
 
